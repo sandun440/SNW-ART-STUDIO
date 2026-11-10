@@ -52,30 +52,31 @@ $orders = db()->query('SELECT * FROM orders ORDER BY created_at DESC LIMIT 10')-
     <a href="<?= url('admin/index.php') ?>" class="active">Overview</a>
     <a href="<?= url('admin/artworks.php') ?>">Artworks (<?= $counts['artworks'] ?>)</a>
     <a href="<?= url('admin/orders.php') ?>">Commissions &amp; Orders (<?= $counts['orders'] ?>)</a>
+    <a href="<?= url('admin/messages.php') ?>">Messages (<?= $counts['messages'] ?>)</a>
     <a href="<?= url('admin/categories.php') ?>">Categories</a>
   </nav>
 
   <!-- Metric Stat Cards -->
   <div class="grid" style="grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 48px;">
-    <div class="stat-card">
+    <a href="<?= url('admin/artworks.php') ?>" class="stat-card" style="text-decoration: none; color: inherit;">
       <p class="eyebrow">Active Artworks</p>
       <div class="stat-number"><?= e((string)$counts['artworks']) ?></div>
-    </div>
+    </a>
 
-    <div class="stat-card">
+    <a href="<?= url('admin/orders.php') ?>" class="stat-card" style="text-decoration: none; color: inherit;">
       <p class="eyebrow">Total Inquiries</p>
       <div class="stat-number"><?= e((string)$counts['orders']) ?></div>
-    </div>
+    </a>
 
-    <div class="stat-card">
+    <a href="<?= url('admin/orders.php?status=new') ?>" class="stat-card" style="text-decoration: none; color: inherit;">
       <p class="eyebrow" style="color: #0369a1;">New Pending</p>
       <div class="stat-number" style="color: #0369a1;"><?= e((string)$counts['new_orders']) ?></div>
-    </div>
+    </a>
 
-    <div class="stat-card">
-      <p class="eyebrow">Contact Messages</p>
+    <a href="<?= url('admin/messages.php') ?>" class="stat-card" style="text-decoration: none; color: inherit;">
+      <p class="eyebrow" style="color: var(--gold-dark);">Contact Messages</p>
       <div class="stat-number"><?= e((string)$counts['messages']) ?></div>
-    </div>
+    </a>
   </div>
 
   <!-- Recent Orders Table -->

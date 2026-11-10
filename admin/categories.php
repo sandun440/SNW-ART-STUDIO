@@ -62,6 +62,15 @@ $categories = db()->query('SELECT c.*, COUNT(a.id) artwork_count FROM categories
     <p class="lead">Organize studio pencil drawings, portraits, and curated collections.</p>
   </div>
 
+  <!-- Admin Nav Tabs -->
+  <nav class="filters" style="margin-bottom: 32px;">
+    <a href="<?= url('admin/index.php') ?>">Overview</a>
+    <a href="<?= url('admin/artworks.php') ?>">Artworks</a>
+    <a href="<?= url('admin/orders.php') ?>">Commissions &amp; Orders</a>
+    <a href="<?= url('admin/messages.php') ?>">Messages</a>
+    <a href="<?= url('admin/categories.php') ?>" class="active">Categories</a>
+  </nav>
+
   <?php if ($message = flash('success')): ?>
     <div class="alert success" style="margin-bottom: 24px;">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
