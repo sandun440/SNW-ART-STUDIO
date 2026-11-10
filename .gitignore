@@ -1,0 +1,13 @@
+# Environment & configuration overrides
+config/local.php
+.env
+*.log
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Customer order uploads (private user files)
+uploads/orders/*
+!uploads/orders/.gitkeep

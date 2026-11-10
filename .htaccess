@@ -1,0 +1,14 @@
+# Disable directory browsing
+Options -Indexes
+
+# Block sensitive files
+<FilesMatch "^(\.git|\.env|README\.md|.*\.sql)$">
+    Require all denied
+</FilesMatch>
+
+# Protect database directory
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^database/ - [F,L]
+</IfModule>
+
