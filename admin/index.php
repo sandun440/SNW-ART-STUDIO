@@ -136,6 +136,13 @@ $orders = db()->query('SELECT * FROM orders ORDER BY created_at DESC LIMIT 10')-
       </div>
     <?php endif; ?>
   </section>
+
+  <footer style="margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: var(--muted); flex-wrap: wrap; gap: 12px;">
+    <div>SNW Art Studio · Internal Management Portal v1.0</div>
+    <div>
+      System Engineered &amp; Maintained by <a href="https://sandunsameera.vercel.app/" target="_blank" rel="noopener" style="color: var(--gold-dark); font-weight: 600; text-decoration: none;">Sandun Sameera ↗</a>
+    </div>
+  </footer>
 </main>
 </body>
 </html>

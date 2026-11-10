@@ -2,11 +2,17 @@
 $pageTitle = $pageTitle ?? APP_NAME;
 $currentUri = $_SERVER['REQUEST_URI'] ?? '';
 ?>
+<!--
+  SNW ART STUDIO — Fine Handcrafted Graphite & Portrait Art
+  Designed & Engineered by Sandun Sameera
+  Portfolio: https://sandunsameera.vercel.app/
+-->
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Sandun Sameera (https://sandunsameera.vercel.app/)">
 <title><?= e($pageTitle) ?> · <?= APP_NAME ?></title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

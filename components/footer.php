@@ -33,8 +33,16 @@
   </div>
 
   <div class="container footer-bottom">
-    <div>© <?= date('Y') ?> SNW ART STUDIO. Handcrafted with patient graphite strokes.</div>
+    <div>
+      © <?= date('Y') ?> SNW ART STUDIO. Handcrafted with patient graphite strokes.
+      <span style="opacity:0.3;margin:0 8px;">|</span>
+      <span>Crafted by <a href="https://sandunsameera.vercel.app/" target="_blank" rel="noopener" style="color:var(--gold-dark);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--gold-dark);transition:all 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--gold-dark)'">Sandun Sameera</a></span>
+    </div>
     <div style="display:flex;gap:18px;align-items:center;">
+      <a href="https://sandunsameera.vercel.app/" target="_blank" rel="noopener" style="color:var(--muted);font-size:12px;text-decoration:none;display:inline-flex;align-items:center;gap:4px;" title="Website Developer Portfolio">
+        <span>Developer Portfolio</span>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>
       <a href="<?= url('admin/login.php') ?>" style="opacity:0.6;font-size:11px;">Studio Portal</a>
     </div>
   </div>
