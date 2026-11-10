@@ -1,23 +1,59 @@
 <?php
 declare(strict_types=1);
 
-const APP_NAME = 'SNW ART STUDIO';
-const BASE_URL = 'http://localhost/SNW%20ART%20STUDIO';
-const DB_HOST = '127.0.0.1';
-const DB_NAME = 'snw_art_studio';
-const DB_USER = 'root';
-const DB_PASS = '';
-const WHATSAPP_NUMBER = '94765237415';
-const STUDIO_EMAIL = 'studio@snwartstudio.com';
-const STUDIO_HOURS = 'Monday — Saturday: 09:00 AM — 06:00 PM (IST)';
-const CURRENCY_SYMBOL = 'Rs.'; // Change to 'Rs. ' or 'LKR ' or '$' as needed
+/**
+ * Lightweight .env parser to support Environment Variables
+ * Works without composer or external packages.
+ */
+function load_env(string $path): void {
+    if (!file_exists($path)) return;
+    $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        $line = trim($line);
+        if ($line === '' || str_starts_with($line, '#')) continue;
+        if (str_contains($line, '=')) {
+            [$key, $value] = explode('=', $line, 2);
+            $key = trim($key);
+            $value = trim($value, " \t\n\r\0\x0B\"'");
+            if (!array_key_exists($key, $_SERVER) && !array_key_exists($key, $_ENV)) {
+                putenv("$key=$value");
+                $_ENV[$key] = $value;
+                $_SERVER[$key] = $value;
+            }
+        }
+    }
+}
+
+function env(string $key, mixed $default = null): mixed {
+    $value = getenv($key);
+    if ($value === false) {
+        $value = $_ENV[$key] ?? $_SERVER[$key] ?? $default;
+    }
+    return $value;
+}
+
+// Load environment variables from .env file in root
+load_env(__DIR__ . '/../.env');
+
+// Application Configuration (Environment Variables with fallback defaults)
+define('APP_NAME', (string)env('APP_NAME', 'SNW ART STUDIO'));
+define('BASE_URL', (string)env('BASE_URL', 'http://localhost/SNW%20ART%20STUDIO'));
+define('DB_HOST', (string)env('DB_HOST', '127.0.0.1'));
+define('DB_NAME', (string)env('DB_NAME', 'snw_art_studio'));
+define('DB_USER', (string)env('DB_USER', 'root'));
+define('DB_PASS', (string)env('DB_PASS', ''));
+define('WHATSAPP_NUMBER', (string)env('WHATSAPP_NUMBER', '94765237415'));
+define('STUDIO_EMAIL', (string)env('STUDIO_EMAIL', 'studio@snwartstudio.com'));
+define('STUDIO_HOURS', (string)env('STUDIO_HOURS', 'Monday — Saturday: 09:00 AM — 06:00 PM (IST)'));
+define('CURRENCY_SYMBOL', (string)env('CURRENCY_SYMBOL', 'Rs. '));
 
 // Studio Bank Account Details (Payment Method)
-const BANK_NAME = 'Commercial Bank of Ceylon';
-const BANK_ACCOUNT_NAME = 'SNW ART STUDIO';
-const BANK_ACCOUNT_NUMBER = '8001234567';
-const BANK_BRANCH = 'Colombo Main Branch';
-const BANK_SWIFT = 'CCEYLKKL';
+define('BANK_NAME', (string)env('BANK_NAME', 'Commercial Bank of Ceylon'));
+define('BANK_ACCOUNT_NAME', (string)env('BANK_ACCOUNT_NAME', 'SNW ART STUDIO'));
+define('BANK_ACCOUNT_NUMBER', (string)env('BANK_ACCOUNT_NUMBER', '8001234567'));
+define('BANK_BRANCH', (string)env('BANK_BRANCH', 'Colombo Main Branch'));
+define('BANK_SWIFT', (string)env('BANK_SWIFT', 'CCEYLKKL'));
+
 date_default_timezone_set('Asia/Colombo');
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start([
