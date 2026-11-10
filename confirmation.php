@@ -101,7 +101,10 @@ require __DIR__ . '/components/header.php';
       <span>Send Payment Slip via WhatsApp</span>
     </a>
 
-    <a class="button light" href="<?= url('index.php') ?>" style="padding: 14px;">Return to Studio Home</a>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+      <a class="button light" href="<?= url('track.php?ref=' . urlencode($order['reference_no'])) ?>" style="padding: 14px;">Track Order Status</a>
+      <a class="button light" href="<?= url('index.php') ?>" style="padding: 14px;">Return to Home</a>
+    </div>
   </div>
 </main>
 

@@ -30,6 +30,7 @@ $currentUri = $_SERVER['REQUEST_URI'] ?? '';
       <a href="<?= url('index.php') ?>" class="<?= str_contains($currentUri, 'index.php') || $currentUri === '/' || str_ends_with($currentUri, 'SNW%20ART%20STUDIO/') ? 'active' : '' ?>">Home</a>
       <a href="<?= url('gallery.php') ?>" class="<?= str_contains($currentUri, 'gallery.php') ? 'active' : '' ?>">Gallery</a>
       <a href="<?= url('about.php') ?>" class="<?= str_contains($currentUri, 'about.php') ? 'active' : '' ?>">The Artist</a>
+      <a href="<?= url('track.php') ?>" class="<?= str_contains($currentUri, 'track.php') ? 'active' : '' ?>">Track Order</a>
       <a href="<?= url('contact.php') ?>" class="<?= str_contains($currentUri, 'contact.php') ? 'active' : '' ?>">Contact</a>
       <a href="<?= url('order.php') ?>" class="nav-cta">
         <span>Commission a Piece</span>
