@@ -33,7 +33,7 @@ $categories = db()->query('SELECT c.*, COUNT(a.id) artwork_count FROM categories
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="<?= url('assets/css/style.css') ?>" rel="stylesheet">
+<link href="<?= url('assets/css/style.css') ?>?v=3.1" rel="stylesheet">
 </head>
 <body style="background: var(--cream);">
 

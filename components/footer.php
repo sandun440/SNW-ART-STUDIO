@@ -57,6 +57,6 @@
   <span>Chat with Artist</span>
 </a>
 
-<script src="<?= url('assets/js/app.js') ?>"></script>
+<script src="<?= url('assets/js/app.js') ?>?v=3.1"></script>
 </body>
 </html>

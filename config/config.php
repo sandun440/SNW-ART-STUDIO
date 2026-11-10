@@ -38,18 +38,27 @@ load_env(__DIR__ . '/../.env');
 // Detect environment (Localhost Windows vs InfinityFree Linux Production)
 $isLocalhost = (PHP_OS_FAMILY === 'Windows');
 
+// Dynamically detect scheme (HTTP or HTTPS) to prevent mixed-content blocks on mobile
+$isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+           || (isset($_SERVER['SERVER_PORT']) && (int)$_SERVER['SERVER_PORT'] === 443)
+           || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+           || (isset($_SERVER['HTTP_CF_VISITOR']) && str_contains($_SERVER['HTTP_CF_VISITOR'], 'https'));
+
+$scheme = $isHttps ? 'https://' : 'http://';
+$host = $_SERVER['HTTP_HOST'] ?? ($isLocalhost ? 'localhost' : 'snwartstudio.infinityfree.io');
+
 if ($isLocalhost) {
-    // Localhost Environment Settings (XAMPP Windows)
+    // Localhost Environment Settings (XAMPP Windows - supports localhost or local LAN IP like 192.168.x.x)
     define('APP_NAME', 'SNW ART STUDIO');
-    define('BASE_URL', 'http://localhost/SNW%20ART%20STUDIO');
+    define('BASE_URL', $scheme . $host . '/SNW%20ART%20STUDIO');
     define('DB_HOST', '127.0.0.1');
     define('DB_NAME', 'snw_art_studio');
     define('DB_USER', 'root');
     define('DB_PASS', '');
 } else {
-    // InfinityFree Linux Server Settings
+    // InfinityFree Linux Server Settings (dynamically matches scheme https:// or http://)
     define('APP_NAME', 'SNW ART STUDIO');
-    define('BASE_URL', 'http://snwartstudio.infinityfree.io');
+    define('BASE_URL', $scheme . $host);
     define('DB_HOST', 'sql310.infinityfree.com');
     define('DB_NAME', 'if0_43405173_snw_art_studio');
     define('DB_USER', 'if0_43405173');
