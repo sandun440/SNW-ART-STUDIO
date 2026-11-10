@@ -119,3 +119,4 @@ function copyAccountNo() {
 </script>
 
 <?php require __DIR__ . '/components/footer.php'; ?>
+
