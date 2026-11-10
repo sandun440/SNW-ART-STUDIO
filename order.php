@@ -175,6 +175,14 @@ require __DIR__ . '/components/header.php';
               <span style="font-size: 13px; color: var(--muted);">You receive step-by-step WIP photos. You approve the final artwork before it is sealed and shipped.</span>
             </div>
           </div>
+
+          <div style="display: flex; gap: 14px; align-items: start;">
+            <div style="width: 28px; height: 28px; border-radius: var(--radius-full); background: var(--gold-light); color: var(--gold-dark); font-weight: 700; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">4</div>
+            <div>
+              <strong style="display: block; font-size: 14px; color: var(--ink);">Bank Payment &amp; Confirmation</strong>
+              <span style="font-size: 13px; color: var(--muted);">Direct bank transfer details are shown on the next page. A 50% advance confirms your easel booking.</span>
+            </div>
+          </div>
         </div>
 
         <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted);">

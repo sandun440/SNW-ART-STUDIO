@@ -15,6 +15,7 @@
       <h4>Explore</h4>
       <a href="<?= url('gallery.php') ?>">Original Gallery</a>
       <a href="<?= url('order.php') ?>">Custom Commission</a>
+      <a href="<?= url('payment.php') ?>">Bank &amp; Payment Details</a>
       <a href="<?= url('about.php') ?>">The Artist Story</a>
       <a href="<?= url('contact.php') ?>">Direct Inquiry</a>
     </div>

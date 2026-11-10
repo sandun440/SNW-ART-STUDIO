@@ -8,6 +8,13 @@ const DB_NAME = 'snw_art_studio';
 const DB_USER = 'root';
 const DB_PASS = '';
 const WHATSAPP_NUMBER = '94765237415';
+
+// Studio Bank Account Details (Payment Method)
+const BANK_NAME = 'Commercial Bank of Ceylon';
+const BANK_ACCOUNT_NAME = 'SNW ART STUDIO';
+const BANK_ACCOUNT_NUMBER = '8001234567';
+const BANK_BRANCH = 'Colombo Main Branch';
+const BANK_SWIFT = 'CCEYLKKL';
 date_default_timezone_set('Asia/Colombo');
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start([
