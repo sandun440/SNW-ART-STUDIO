@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || !empty($_GET['ref'])) {
             // If phone provided, verify both for maximum privacy. If only ref provided via GET, prompt for phone or allow direct view if coming from confirmation.
             if (!empty($phoneInput)) {
                 $cleanPhone = preg_replace('/[^0-9]/', '', $phoneInput);
-                $stmt = $pdo->prepare("
+                $stmt = db()->prepare("
                     SELECT o.*, a.title AS artwork_title, a.image_path AS artwork_image
                     FROM orders o
                     LEFT JOIN artworks a ON o.artwork_id = a.id
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || !empty($_GET['ref'])) {
                 }
             } else {
                 // If only ref entered without phone
-                $stmt = $pdo->prepare("
+                $stmt = db()->prepare("
                     SELECT o.*, a.title AS artwork_title, a.image_path AS artwork_image
                     FROM orders o
                     LEFT JOIN artworks a ON o.artwork_id = a.id
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || !empty($_GET['ref'])) {
                 }
             }
         } catch (Throwable $e) {
-            $error = 'Unable to look up order at this moment. Please reach out via WhatsApp.';
+            $error = 'Unable to look up order: ' . htmlspecialchars($e->getMessage());
         }
     }
 }
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || !empty($_GET['ref'])) {
 // Fetch images if order unlocked
 $orderImages = [];
 if ($order) {
-    $imgStmt = $pdo->prepare("SELECT image_path FROM order_images WHERE order_id = :id");
+    $imgStmt = db()->prepare("SELECT image_path FROM order_images WHERE order_id = :id");
     $imgStmt->execute(['id' => $order['id']]);
     $orderImages = $imgStmt->fetchAll(PDO::FETCH_COLUMN);
 }
@@ -242,3 +242,4 @@ require __DIR__ . '/components/header.php';
 </style>
 
 <?php require __DIR__ . '/components/footer.php'; ?>
+
