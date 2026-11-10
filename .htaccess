@@ -1,14 +1,18 @@
-# Disable directory browsing
-Options -Indexes
-
-# Block sensitive files
-<FilesMatch "^(\.git|\.env|README\.md|.*\.sql)$">
-    Require all denied
-</FilesMatch>
+# Prevent 500 errors on InfinityFree / shared hosts
+<IfModule mod_authz_core.c>
+    <FilesMatch "^(\.git|\.env|README\.md|.*\.sql)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+    <FilesMatch "^(\.git|\.env|README\.md|.*\.sql)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
 
 # Protect database directory
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteRule ^database/ - [F,L]
 </IfModule>
-
