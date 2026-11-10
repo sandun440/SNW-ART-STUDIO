@@ -14,7 +14,7 @@ function db(): PDO
         ]);
     } catch (PDOException $e) {
         http_response_code(500);
-        die('<strong>Database connection failed:</strong> Please make sure MySQL is running in XAMPP Control Panel.<br><br><em>Details: ' . htmlspecialchars($e->getMessage()) . '</em>');
+        die('<strong>Database connection failed:</strong><br><br><em>Details: ' . htmlspecialchars($e->getMessage()) . ' (Host: ' . htmlspecialchars(DB_HOST) . ', DB: ' . htmlspecialchars(DB_NAME) . ', User: ' . htmlspecialchars(DB_USER) . ')</em>');
     }
     return $pdo;
 }

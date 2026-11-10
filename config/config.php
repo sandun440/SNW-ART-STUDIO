@@ -35,26 +35,25 @@ function env(string $key, mixed $default = null): mixed {
 // Load environment variables if .env exists
 load_env(__DIR__ . '/../.env');
 
-// Detect environment (Localhost vs InfinityFree / Production)
-$httpHost = $_SERVER['HTTP_HOST'] ?? 'localhost';
-$isLocalhost = in_array($httpHost, ['localhost', '127.0.0.1'], true) || str_contains($httpHost, 'localhost');
+// Detect environment (Localhost Windows vs InfinityFree Linux Production)
+$isLocalhost = (PHP_OS_FAMILY === 'Windows');
 
 if ($isLocalhost) {
-    // Localhost Environment Settings
-    define('APP_NAME', (string)env('APP_NAME', 'SNW ART STUDIO'));
+    // Localhost Environment Settings (XAMPP Windows)
+    define('APP_NAME', 'SNW ART STUDIO');
     define('BASE_URL', 'http://localhost/SNW%20ART%20STUDIO');
     define('DB_HOST', '127.0.0.1');
     define('DB_NAME', 'snw_art_studio');
     define('DB_USER', 'root');
     define('DB_PASS', '');
 } else {
-    // InfinityFree / Live Hosting Settings
-    define('APP_NAME', (string)env('APP_NAME', 'SNW ART STUDIO'));
-    define('BASE_URL', (string)env('BASE_URL', 'http://snwartstudio.infinityfree.io'));
-    define('DB_HOST', (string)env('DB_HOST', 'sql310.infinityfree.com'));
-    define('DB_NAME', (string)env('DB_NAME', 'if0_43405173_snw_art_studio'));
-    define('DB_USER', (string)env('DB_USER', 'if0_43405173'));
-    define('DB_PASS', (string)env('DB_PASS', 'tACT23omLuVKBk4'));
+    // InfinityFree Linux Server Settings
+    define('APP_NAME', 'SNW ART STUDIO');
+    define('BASE_URL', 'http://snwartstudio.infinityfree.io');
+    define('DB_HOST', 'sql310.infinityfree.com');
+    define('DB_NAME', 'if0_43405173_snw_art_studio');
+    define('DB_USER', 'if0_43405173');
+    define('DB_PASS', 'tACT23omLuVKBk4');
 }
 
 // Studio Contact & Settings
