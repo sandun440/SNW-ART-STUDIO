@@ -61,7 +61,7 @@ require __DIR__ . '/components/header.php';
               <h3><?= e($art['title']) ?></h3>
               <p><?= e($art['description']) ?></p>
               <div class="card-footer">
-                <div class="price">$<?= number_format((float)$art['price'], 2) ?></div>
+                <div class="price"><?= format_price($art['price']) ?></div>
                 <span class="art-view-link">View details &rarr;</span>
               </div>
             </div>

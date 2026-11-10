@@ -142,7 +142,7 @@ $artworks = db()->query('SELECT a.*, c.name category_name FROM artworks a JOIN c
         </div>
 
         <div class="field">
-          <label>Price (USD) *</label>
+          <label>Price (<?= e(CURRENCY_SYMBOL) ?>) *</label>
           <input type="number" step="0.01" min="0" name="price" required placeholder="180.00" value="<?= e((string)($edit['price'] ?? '')) ?>">
         </div>
 
@@ -220,7 +220,7 @@ $artworks = db()->query('SELECT a.*, c.name category_name FROM artworks a JOIN c
                 </small>
               </td>
               <td><?= e($art['category_name']) ?></td>
-              <td><strong style="color:var(--gold-dark);font-family:var(--font-serif);">$<?= number_format((float)$art['price'], 2) ?></strong></td>
+              <td><strong style="color:var(--gold-dark);font-family:var(--font-serif);"><?= format_price($art['price']) ?></strong></td>
               <td>
                 <?php if (!empty($art['featured'])): ?>
                   <span class="status-badge status-confirmed">Featured</span>

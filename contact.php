@@ -50,12 +50,12 @@ require __DIR__ . '/components/header.php';
       <div style="margin-top: 36px; display: flex; flex-direction: column; gap: 20px;">
         <div>
           <strong style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-dark); display: block; margin-bottom: 4px;">Studio Working Hours</strong>
-          <p style="font-size: 14.5px; color: var(--ink);">Monday — Saturday: 09:00 AM — 06:00 PM (IST)</p>
+          <p style="font-size: 14.5px; color: var(--ink);"><?= e(STUDIO_HOURS) ?></p>
         </div>
 
         <div>
           <strong style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-dark); display: block; margin-bottom: 4px;">Direct Email</strong>
-          <p style="font-size: 14.5px; color: var(--ink);">studio@snwartstudio.com</p>
+          <p style="font-size: 14.5px; color: var(--ink);"><a href="mailto:<?= e(STUDIO_EMAIL) ?>" style="color:inherit;"><?= e(STUDIO_EMAIL) ?></a></p>
         </div>
 
         <div>

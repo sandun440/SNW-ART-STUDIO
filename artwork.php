@@ -49,7 +49,7 @@ require __DIR__ . '/components/header.php';
     <div class="detail-copy">
       <p class="eyebrow"><?= e($art['category_name']) ?></p>
       <h1><?= e($art['title']) ?></h1>
-      <div class="price">$<?= number_format((float)$art['price'], 2) ?></div>
+      <div class="price"><?= format_price($art['price']) ?></div>
       
       <p class="lead" style="font-size: 15.5px; margin-bottom: 24px;">
         <?= nl2br(e($art['description'])) ?>
@@ -87,7 +87,7 @@ require __DIR__ . '/components/header.php';
         </a>
 
         <?php 
-        $waMsg = "Hello SNW Art Studio! I am interested in purchasing the artwork: '" . $art['title'] . "' ($" . number_format((float)$art['price'], 2) . "). Is it currently available?";
+        $waMsg = "Hello SNW Art Studio! I am interested in purchasing the artwork: '" . $art['title'] . "' (" . format_price($art['price']) . "). Is it currently available?";
         ?>
         <a class="button light" href="https://wa.me/<?= WHATSAPP_NUMBER ?>?text=<?= urlencode($waMsg) ?>" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#25d366"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.07-.98-.073-.679-.278-1.574-.916-2.316-1.658-.87-.87-1.428-1.89-1.688-2.339-.144-.249-.015-.386.109-.51.111-.112.253-.29.38-.435.127-.144.17-.247.255-.411.085-.164.042-.307-.021-.433-.063-.127-.571-1.378-.782-1.89-.205-.499-.413-.431-.571-.439-.147-.008-.316-.01-.485-.01s-.444.063-.677.317c-.233.254-.889.868-.889 2.117 0 1.249.91 2.455 1.037 2.625.127.17 1.79 2.733 4.336 3.832.606.262 1.079.418 1.448.535.609.193 1.163.166 1.601.1.488-.074 1.503-.614 1.714-1.207.212-.593.212-1.101.149-1.207-.064-.106-.233-.17-.487-.297z"/></svg>
@@ -123,7 +123,7 @@ require __DIR__ . '/components/header.php';
                 <h3><?= e($item['title']) ?></h3>
                 <p><?= e($item['description']) ?></p>
                 <div class="card-footer">
-                  <div class="price">$<?= number_format((float)$item['price'], 2) ?></div>
+                  <div class="price"><?= format_price($item['price']) ?></div>
                   <span class="art-view-link">View details &rarr;</span>
                 </div>
               </div>

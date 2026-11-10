@@ -27,7 +27,7 @@
 
     <div class="footer-col">
       <h4>Studio Hours</h4>
-      <p>Monday — Saturday<br>09:00 AM — 06:00 PM (IST)<br><small style="color:var(--gold-dark);font-weight:600;">Worldwide Express Delivery</small></p>
+      <p><?= e(STUDIO_HOURS) ?><br><small style="color:var(--gold-dark);font-weight:600;">Worldwide Express Delivery</small></p>
     </div>
   </div>
 

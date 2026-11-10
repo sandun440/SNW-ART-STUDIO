@@ -2,6 +2,9 @@
 declare(strict_types=1);
 
 function e(?string $value): string { return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8'); }
+function format_price(float|int|string $amount): string {
+    return CURRENCY_SYMBOL . number_format((float)$amount, 2);
+}
 function url(string $path = ''): string { return rtrim(BASE_URL, '/') . '/' . ltrim($path, '/'); }
 function redirect(string $path): never { header('Location: ' . url($path)); exit; }
 function csrf_token(): string { return $_SESSION['csrf'] ??= bin2hex(random_bytes(32)); }

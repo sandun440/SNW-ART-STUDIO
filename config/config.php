@@ -8,6 +8,9 @@ const DB_NAME = 'snw_art_studio';
 const DB_USER = 'root';
 const DB_PASS = '';
 const WHATSAPP_NUMBER = '94765237415';
+const STUDIO_EMAIL = 'studio@snwartstudio.com';
+const STUDIO_HOURS = 'Monday — Saturday: 09:00 AM — 06:00 PM (IST)';
+const CURRENCY_SYMBOL = '$'; // Change to 'Rs. ' or 'LKR ' or '$' as needed
 
 // Studio Bank Account Details (Payment Method)
 const BANK_NAME = 'Commercial Bank of Ceylon';

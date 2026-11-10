@@ -2,6 +2,7 @@
 require_once __DIR__ . '/config/config.php';
 $pageTitle = 'Fine Handcrafted Graphite & Portrait Art';
 $artworks = db()->query("SELECT a.*, c.name category_name FROM artworks a JOIN categories c ON c.id=a.category_id WHERE a.featured=1 ORDER BY a.created_at DESC LIMIT 3")->fetchAll();
+$heroArt = $artworks[0] ?? null;
 require __DIR__ . '/components/header.php';
 ?>
 <main>
@@ -50,11 +51,19 @@ require __DIR__ . '/components/header.php';
 
       <div class="hero-card">
         <div class="hero-art-img-wrap">
-          <img src="<?= url('uploads/artworks/study-02.jpg') ?>" alt="Featured Graphite Portrait Artwork" loading="eager">
-          <div class="hero-floating-badge">
-            <span>“The Gaze” · Portrait Study</span>
-            <small>Layered 2B-8B Charcoal & Graphite on Archival Cotton</small>
-          </div>
+          <?php if (!empty($heroArt['image_path'])): ?>
+            <img src="<?= url($heroArt['image_path']) ?>" alt="<?= e($heroArt['title']) ?>" loading="eager">
+            <div class="hero-floating-badge">
+              <span>“<?= e($heroArt['title']) ?>” · <?= e($heroArt['category_name']) ?></span>
+              <small>Layered 2B-8B Charcoal &amp; Graphite on Archival Cotton</small>
+            </div>
+          <?php else: ?>
+            <img src="<?= url('uploads/artworks/study-02.jpg') ?>" alt="Featured Artwork" loading="eager">
+            <div class="hero-floating-badge">
+              <span>Studio Showcase</span>
+              <small>Handcrafted Graphite on Archival Paper</small>
+            </div>
+          <?php endif; ?>
         </div>
       </div>
     </div>
@@ -89,7 +98,7 @@ require __DIR__ . '/components/header.php';
                 <h3><?= e($art['title']) ?></h3>
                 <p><?= e($art['description']) ?></p>
                 <div class="card-footer">
-                  <div class="price">$<?= number_format((float)$art['price'], 2) ?></div>
+                  <div class="price"><?= format_price($art['price']) ?></div>
                   <span class="art-view-link">View details &rarr;</span>
                 </div>
               </div>
