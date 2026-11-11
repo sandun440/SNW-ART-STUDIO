@@ -17,7 +17,7 @@ $currentUri = $_SERVER['REQUEST_URI'] ?? '';
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="<?= url('assets/css/style.css') ?>?v=4.2" rel="stylesheet">
+<link href="<?= url('assets/css/style.css') ?>?v=4.5" rel="stylesheet">
 </head>
 <body>
 <header class="site-header">
@@ -44,15 +44,15 @@ $currentUri = $_SERVER['REQUEST_URI'] ?? '';
       </a>
 
       <?php if (!empty($_SESSION['admin_id'])): ?>
-        <a href="<?= url('admin/index.php') ?>" class="admin-nav-btn is-logged" title="Studio Admin Dashboard">
-          <span class="admin-dot"></span>
-          <span>Dashboard</span>
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="opacity: 0.45; margin-left: 1px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <a href="<?= url('admin/index.php') ?>" class="admin-nav-btn is-logged" title="Studio Admin Dashboard" style="display:inline-flex !important; align-items:center !important; gap:9px !important; padding:8px 18px !important; border-radius:999px !important; background:#ffffff !important; border:1.5px solid rgba(197,160,89,0.5) !important; color:#11100e !important; text-decoration:none !important; font-weight:600 !important; font-size:13px !important; box-shadow:0 2px 8px rgba(17,16,14,0.06) !important; white-space:nowrap !important;">
+          <span class="admin-dot" style="width:8px; height:8px; border-radius:50%; background:#10b981; box-shadow:0 0 0 2px rgba(16,185,129,0.25); flex-shrink:0;"></span>
+          <span style="color:#11100e !important; font-weight:600 !important;">Dashboard</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="opacity:0.45; margin-left:1px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </a>
       <?php else: ?>
-        <a href="<?= url('admin/login.php') ?>" class="admin-nav-btn" title="Studio Admin Login">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--gold-dark);"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          <span>Admin</span>
+        <a href="<?= url('admin/login.php') ?>" class="admin-nav-btn" title="Studio Admin Login" style="display:inline-flex !important; align-items:center !important; gap:8px !important; padding:8px 18px !important; border-radius:999px !important; background:#ffffff !important; border:1.5px solid rgba(197,160,89,0.4) !important; color:#11100e !important; text-decoration:none !important; font-weight:600 !important; font-size:13px !important; box-shadow:0 2px 8px rgba(17,16,14,0.06) !important; white-space:nowrap !important;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold-dark); flex-shrink:0;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <span style="color:#11100e !important; font-weight:600 !important;">Admin</span>
         </a>
       <?php endif; ?>
     </nav>
