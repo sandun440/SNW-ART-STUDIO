@@ -116,3 +116,4 @@ $messages = db()->query('SELECT * FROM contact_messages ORDER BY created_at DESC
 </main>
 </body>
 </html>
+
