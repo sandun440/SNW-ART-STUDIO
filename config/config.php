@@ -108,7 +108,10 @@ function studio_setting(string $key, ?string $default = null): string {
 define('WHATSAPP_NUMBER', (string)studio_setting('whatsapp_number', (string)env('WHATSAPP_NUMBER', '94765237415')));
 define('STUDIO_EMAIL', (string)studio_setting('studio_email', (string)env('STUDIO_EMAIL', 'studio@snwartstudio.com')));
 define('STUDIO_HOURS', (string)studio_setting('studio_hours', (string)env('STUDIO_HOURS', 'Monday — Saturday: 09:00 AM — 06:00 PM (IST)')));
-define('CURRENCY_SYMBOL', (string)env('CURRENCY_SYMBOL', 'Rs.'));
+define('STUDIO_CURRENCY', (string)studio_setting('currency_symbol', (string)env('CURRENCY_SYMBOL', 'Rs.')));
+if (!defined('CURRENCY_SYMBOL')) {
+    define('CURRENCY_SYMBOL', STUDIO_CURRENCY);
+}
 
 // Studio Bank Account Details (from Database, fallback to .env / defaults)
 define('BANK_NAME', (string)studio_setting('bank_name', (string)env('BANK_NAME', 'Commercial Bank of Ceylon')));

@@ -152,7 +152,7 @@ $artworks = db()->query('SELECT a.*, c.name category_name FROM artworks a JOIN c
         </div>
 
         <div class="field">
-          <label>Price (<?= e(CURRENCY_SYMBOL) ?>) *</label>
+          <label>Price (<?= e(defined('STUDIO_CURRENCY') ? STUDIO_CURRENCY : 'Rs.') ?>) *</label>
           <input type="number" step="0.01" min="0" name="price" required placeholder="180.00" value="<?= e((string)($edit['price'] ?? '')) ?>">
         </div>
 

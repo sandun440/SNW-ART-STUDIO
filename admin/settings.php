@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'whatsapp_number' => preg_replace('/[^0-9]/', '', $_POST['whatsapp_number'] ?? ''),
         'studio_email' => trim($_POST['studio_email'] ?? ''),
         'studio_hours' => trim($_POST['studio_hours'] ?? ''),
+        'currency_symbol' => trim($_POST['currency_symbol'] ?? 'Rs.'),
     ];
 
     if (empty($fields['bank_name']) || empty($fields['bank_account_name']) || empty($fields['bank_account_number'])) {
@@ -53,6 +54,7 @@ $bankSwift = studio_setting('bank_swift', BANK_SWIFT);
 $whatsapp = studio_setting('whatsapp_number', WHATSAPP_NUMBER);
 $email = studio_setting('studio_email', STUDIO_EMAIL);
 $hours = studio_setting('studio_hours', STUDIO_HOURS);
+$currency = studio_setting('currency_symbol', defined('STUDIO_CURRENCY') ? STUDIO_CURRENCY : 'Rs.');
 ?>
 <!doctype html>
 <html lang="en">
@@ -185,6 +187,12 @@ $hours = studio_setting('studio_hours', STUDIO_HOURS);
             <div>
               <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dark); font-weight: 700; margin-bottom: 6px;">Studio Working Hours</label>
               <input type="text" name="studio_hours" value="<?= e($hours) ?>" style="width: 100%; padding: 12px 16px; background: #faf8f5; border: 1.5px solid #ded6c9; border-radius: 8px; color: var(--ink); font-size: 14.5px;">
+            </div>
+
+            <div style="grid-column: 1 / -1; padding-top: 14px; border-top: 1px dashed var(--line);">
+              <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dark); font-weight: 700; margin-bottom: 6px;">Currency Symbol (e.g. Rs. or LKR or $)</label>
+              <input type="text" name="currency_symbol" value="<?= e($currency) ?>" required style="max-width: 180px; padding: 12px 16px; background: #faf8f5; border: 1.5px solid #ded6c9; border-radius: 8px; color: var(--ink); font-size: 15px; font-weight: 700;">
+              <small style="color: var(--muted); font-size: 12px; margin-top: 4px; display: block;">This currency prefix is shown before all artwork prices across the gallery and checkout.</small>
             </div>
           </div>
         </div>

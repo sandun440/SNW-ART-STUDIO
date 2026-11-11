@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 function e(?string $value): string { return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8'); }
 function format_price(float|int|string $amount): string {
-    return CURRENCY_SYMBOL . number_format((float)$amount, 2);
+    $symbol = defined('STUDIO_CURRENCY') ? STUDIO_CURRENCY : (defined('CURRENCY_SYMBOL') && is_string(CURRENCY_SYMBOL) && !is_numeric(CURRENCY_SYMBOL) ? CURRENCY_SYMBOL : 'Rs.');
+    return trim($symbol) . ' ' . number_format((float)$amount, 2);
 }
 function url(string $path = ''): string { return rtrim(BASE_URL, '/') . '/' . ltrim($path, '/'); }
 function redirect(string $path): never { header('Location: ' . url($path)); exit; }
