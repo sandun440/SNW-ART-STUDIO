@@ -25,37 +25,37 @@ require __DIR__ . '/components/header.php';
     <!-- Artist Narrative -->
     <div>
       <p class="eyebrow">SNW Studio Philosophy</p>
-      <p class="quote">“A portrait is never merely a likeness. It is a slow, quiet act of <span>paying attention.</span>”</p>
+      <p class="quote">“An artwork is never merely a likeness. It is a slow, quiet act of <span>paying attention.</span>”</p>
       
       <p class="lead" style="font-size: 15.5px; margin-bottom: 16px;">
-        I am the artist behind SNW ART STUDIO, an independent fine art practice rooted in traditional graphite and charcoal portraiture. In an era dominated by instantaneous digital filters and artificial imagery, I believe there is irreplaceable value in the slow, tactile patience of the hand.
+        I am the artist behind SNW ART STUDIO, an independent fine art practice devoted to fine portraiture, realistic pencil drawings, and expressive live paintings. In an era dominated by instantaneous digital filters and artificial imagery, I believe in the timeless value of handcrafted, tactile artistry.
       </p>
 
       <p class="lead" style="font-size: 15.5px; margin-bottom: 24px;">
-        Every artwork begins with careful contemplation of light, proportion, and gesture. Layer upon layer of graphite — from light drafting grades (2H) to the deepest, velvet blacks (8B) — are delicately applied and blended by hand on archival cotton rag paper.
+        Whether detailing intricate skin textures and light with 2H–8B graphite and willow charcoal, or building vibrant, emotive scenes with acrylics and mixed media on canvas and bespoke surfaces, every stroke is executed with patient fidelity and personal devotion.
       </p>
 
       <div class="detail-specs" style="grid-template-columns: 1fr 1fr; margin: 28px 0;">
         <div class="spec-item">
-          <strong>The Medium</strong>
-          <span>Graphite &amp; Willow Charcoal</span>
+          <strong>The Mediums</strong>
+          <span>Graphite, Charcoal, Acrylic &amp; Mixed Media</span>
         </div>
         <div class="spec-item">
-          <strong>The Surface</strong>
-          <span>300gsm Archival Paper</span>
+          <strong>The Surfaces</strong>
+          <span>Stretched Canvas, 300gsm Paper &amp; Wood Panels</span>
         </div>
         <div class="spec-item">
-          <strong>The Preservation</strong>
-          <span>UV Archival Fixative</span>
+          <strong>Creative Disciplines</strong>
+          <span>Realistic Pencil Art, Portraits &amp; Live Murals</span>
         </div>
         <div class="spec-item">
-          <strong>The Philosophy</strong>
-          <span>100% Traditional Handcraft</span>
+          <strong>Authenticity</strong>
+          <span>100% Handcrafted Originals (No AI / No Digital)</span>
         </div>
       </div>
 
       <a href="<?= url('order.php') ?>" class="button gold">
-        <span>Commission a portrait with the artist</span>
+        <span>Commission a custom artwork with the artist</span>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </a>
     </div>
