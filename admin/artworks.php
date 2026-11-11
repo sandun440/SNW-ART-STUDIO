@@ -169,8 +169,16 @@ $artworks = db()->query('SELECT a.*, c.name category_name FROM artworks a JOIN c
         </div>
 
         <div class="field full">
-          <label>Description &amp; Notes *</label>
-          <textarea name="description" required placeholder="Medium, paper type, inspiration, and mood..."><?= e($edit['description'] ?? '') ?></textarea>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label style="margin-bottom: 0;">Description &amp; Specifications *</label>
+            <button type="button" id="btnInsertTemplate" style="background: none; border: 1px dashed var(--gold); color: var(--gold-dark); padding: 4px 10px; border-radius: 4px; font-size: 11.5px; font-weight: 600; cursor: pointer;">
+              📋 + Insert Medium &amp; Dimensions Template
+            </button>
+          </div>
+          <textarea name="description" id="artworkDescription" required placeholder="Medium: Graphite &amp; Charcoal pencil on paper.&#10;Dimensions: A3 (297 x 420 mm)&#10;&#10;An original handcrafted portrait drawing with rich tonal depth..." style="min-height: 120px; font-family: inherit; line-height: 1.6;"><?= e($edit['description'] ?? '') ?></textarea>
+          <small style="color: var(--muted); font-size: 12px; margin-top: 4px; display: block;">
+            💡 <strong>Format Tip:</strong> Include <code>Medium:</code> and <code>Dimensions:</code> (e.g. A4, A3) on their own lines. The public artwork page automatically detects them and updates the specifications grid!
+          </small>
         </div>
 
         <div class="field full">
@@ -251,5 +259,20 @@ $artworks = db()->query('SELECT a.*, c.name category_name FROM artworks a JOIN c
     </div>
   </section>
 </main>
+<script>
+const btnTemplate = document.getElementById('btnInsertTemplate');
+if (btnTemplate) {
+  btnTemplate.addEventListener('click', () => {
+    const descArea = document.getElementById('artworkDescription');
+    const template = "Medium: Graphite & Charcoal pencil on paper.\nDimensions: A3 (297 x 420 mm)\n\nAn intricate handcrafted original artwork captured with patient attention to light and shadow.";
+    if (!descArea.value.trim()) {
+      descArea.value = template;
+    } else {
+      descArea.value = template + "\n\n" + descArea.value.trim();
+    }
+    descArea.focus();
+  });
+}
+</script>
 </body>
 </html>

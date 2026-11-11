@@ -51,23 +51,56 @@ require __DIR__ . '/components/header.php';
       <h1><?= e($art['title']) ?></h1>
       <div class="price"><?= format_price($art['price']) ?></div>
       
-      <p class="lead" style="font-size: 15.5px; margin-bottom: 24px;">
-        <?= nl2br(e($art['description'])) ?>
-      </p>
+      <?php
+      $desc = $art['description'] ?? '';
+      $extractedMedium = null;
+      $extractedDimensions = null;
+      $extractedSurface = null;
+
+      if (preg_match('/(?:^|\n)\s*Medium\s*:\s*([^\n\r]+)/i', $desc, $m)) {
+          $extractedMedium = trim($m[1]);
+      }
+      if (preg_match('/(?:^|\n)\s*(?:Dimensions|Size)\s*:\s*([^\n\r]+)/i', $desc, $m)) {
+          $extractedDimensions = trim($m[1]);
+      }
+      if (preg_match('/(?:^|\n)\s*Surface\s*:\s*([^\n\r]+)/i', $desc, $m)) {
+          $extractedSurface = trim($m[1]);
+      }
+
+      // Format description with bold keys (e.g. Medium:, Dimensions:)
+      $lines = explode("\n", $desc);
+      $formattedLines = [];
+      foreach ($lines as $line) {
+          $trim = trim($line);
+          if ($trim === '') {
+              $formattedLines[] = '';
+              continue;
+          }
+          if (preg_match('/^([A-Za-z\s]+):\s*(.+)$/', $trim, $matches)) {
+              $formattedLines[] = '<strong style="color:var(--ink);">' . e($matches[1]) . ':</strong> ' . e($matches[2]);
+          } else {
+              $formattedLines[] = e($trim);
+          }
+      }
+      ?>
+
+      <div class="lead" style="font-size: 15.5px; margin-bottom: 24px; line-height: 1.75; color: var(--muted);">
+        <?= implode('<br>', $formattedLines) ?>
+      </div>
 
       <!-- Specifications Grid -->
       <div class="detail-specs">
         <div class="spec-item">
           <strong>Medium</strong>
-          <span>Charcoal &amp; Graphite (2B–8B)</span>
+          <span><?= e($extractedMedium ?: 'Graphite & Charcoal (2B–8B)') ?></span>
         </div>
         <div class="spec-item">
-          <strong>Paper</strong>
-          <span>300gsm Archival Cotton</span>
+          <strong><?= $extractedDimensions ? 'Dimensions' : 'Surface' ?></strong>
+          <span><?= e($extractedDimensions ?: ($extractedSurface ?: '300gsm Archival Paper')) ?></span>
         </div>
         <div class="spec-item">
           <strong>Authenticity</strong>
-          <span>Hand-signed Certificate</span>
+          <span>100% Handcrafted Original</span>
         </div>
         <div class="spec-item">
           <strong>Packaging</strong>
