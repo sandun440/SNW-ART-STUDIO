@@ -148,15 +148,21 @@ require __DIR__ . '/components/header.php';
 
   <!-- Dark Artist Philosophy Section -->
   <section class="section dark">
-    <div class="container split">
+    <div class="container split" style="align-items: center; gap: 60px;">
       <div>
         <p class="eyebrow">A Personal Practice</p>
         <p class="quote">“Every face carries a quiet universe. My work is simply to make the invisible <span>visible.</span>”</p>
+        <div style="margin-top: 24px; border-radius: var(--radius-md); overflow: hidden; border: 1.5px solid rgba(197, 160, 89, 0.4); box-shadow: 0 20px 48px rgba(0,0,0,0.6); max-width: 460px;">
+          <img src="<?= url('uploads/artworks/artist-studio.jpg') ?>" alt="Artist painting live in creative practice" style="width: 100%; height: 280px; object-fit: cover; object-position: center 25%; display: block;" loading="lazy">
+        </div>
       </div>
       <div>
-        <p class="lead">SNW ART STUDIO is an independent practice built around the intimate discipline of hand-drawn portraiture. Each commission begins with an open conversation and ends with a timeless work of art that feels unmistakably alive.</p>
+        <p class="lead">SNW ART STUDIO is an independent practice built around the intimate discipline of hand-drawn portraiture and fine art. Each commission begins with an open conversation and ends with a timeless work of art that feels unmistakably alive.</p>
         <p class="lead" style="margin-top: 14px;">No shortcuts. No mass production. Only patience, observation, and deep respect for the subject.</p>
-        <a href="<?= url('about.php') ?>" class="button light" style="margin-top: 28px;">Meet the artist</a>
+        <a href="<?= url('about.php') ?>" class="button light" style="margin-top: 28px;">
+          <span>Read the artist story</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
       </div>
     </div>
   </section>

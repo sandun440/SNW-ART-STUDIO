@@ -13,11 +13,11 @@ require __DIR__ . '/components/header.php';
   <section class="split section" style="padding-top: 10px;">
     <!-- Visual Artist Showcase -->
     <div class="hero-card" style="box-shadow: var(--shadow-lg);">
-      <div class="hero-art-img-wrap" style="height: 520px;">
-        <img src="<?= url('uploads/artworks/study-03.jpg') ?>" alt="Artist drawing at easel" style="width:100%;height:100%;object-fit:cover;">
+      <div class="hero-art-img-wrap" style="height: 560px;">
+        <img src="<?= url('uploads/artworks/artist-studio.jpg') ?>" alt="SNW Studio Artist in creative practice" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
         <div class="hero-floating-badge">
-          <span>SNW Studio Easel</span>
-          <small>Graphite, Charcoal &amp; Acid-Free Cotton</small>
+          <span>The Artist at Work</span>
+          <small>Live Creative Practice · SNW Studio</small>
         </div>
       </div>
     </div>
