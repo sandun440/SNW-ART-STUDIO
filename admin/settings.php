@@ -7,6 +7,70 @@ $error = flash('error');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     verify_csrf();
+    $action = $_POST['form_action'] ?? 'studio_settings';
+
+    // Handler 1: Update Admin Credentials (Name, Email, Password)
+    if ($action === 'update_admin_credentials') {
+        $adminName = trim($_POST['admin_name'] ?? '');
+        $adminEmail = trim($_POST['admin_email'] ?? '');
+        $currentPass = $_POST['current_password'] ?? '';
+        $newPass = $_POST['new_password'] ?? '';
+        $confirmPass = $_POST['confirm_password'] ?? '';
+
+        if (empty($adminName) || empty($adminEmail) || empty($currentPass)) {
+            flash('error', 'Please provide Admin Name, Email, and your Current Password.');
+            redirect('admin/settings.php#admin-security');
+        }
+
+        if (!filter_var($adminEmail, FILTER_VALIDATE_EMAIL)) {
+            flash('error', 'Please enter a valid email address.');
+            redirect('admin/settings.php#admin-security');
+        }
+
+        // Verify current password against database
+        $checkStmt = db()->prepare("SELECT password_hash FROM admins WHERE id = ?");
+        $checkStmt->execute([$_SESSION['admin_id']]);
+        $row = $checkStmt->fetch();
+
+        if (!$row || !password_verify($currentPass, $row['password_hash'])) {
+            flash('error', 'Current password is incorrect. Credential update denied.');
+            redirect('admin/settings.php#admin-security');
+        }
+
+        // Check if new email is already used by another admin
+        $dupStmt = db()->prepare("SELECT id FROM admins WHERE email = ? AND id != ?");
+        $dupStmt->execute([$adminEmail, $_SESSION['admin_id']]);
+        if ($dupStmt->fetch()) {
+            flash('error', 'This email is already in use by another administrator.');
+            redirect('admin/settings.php#admin-security');
+        }
+
+        try {
+            if (!empty($newPass)) {
+                if (strlen($newPass) < 6) {
+                    flash('error', 'New password must be at least 6 characters long.');
+                    redirect('admin/settings.php#admin-security');
+                }
+                if ($newPass !== $confirmPass) {
+                    flash('error', 'New password and confirmation password do not match.');
+                    redirect('admin/settings.php#admin-security');
+                }
+                $newHash = password_hash($newPass, PASSWORD_DEFAULT);
+                $upd = db()->prepare("UPDATE admins SET name = ?, email = ?, password_hash = ? WHERE id = ?");
+                $upd->execute([$adminName, $adminEmail, $newHash, $_SESSION['admin_id']]);
+            } else {
+                $upd = db()->prepare("UPDATE admins SET name = ?, email = ? WHERE id = ?");
+                $upd->execute([$adminName, $adminEmail, $_SESSION['admin_id']]);
+            }
+
+            $_SESSION['admin_name'] = $adminName;
+            flash('success', 'Admin login credentials updated successfully! You can now log in with your new email/password.');
+            redirect('admin/settings.php#admin-security');
+        } catch (Throwable $e) {
+            flash('error', 'Error updating admin credentials: ' . $e->getMessage());
+            redirect('admin/settings.php#admin-security');
+        }
+    }
 
     $fields = [
         'bank_name' => trim($_POST['bank_name'] ?? ''),
@@ -55,6 +119,16 @@ $whatsapp = studio_setting('whatsapp_number', WHATSAPP_NUMBER);
 $email = studio_setting('studio_email', STUDIO_EMAIL);
 $hours = studio_setting('studio_hours', STUDIO_HOURS);
 $currency = studio_setting('currency_symbol', defined('STUDIO_CURRENCY') ? STUDIO_CURRENCY : 'Rs.');
+
+// Fetch current logged in admin account info
+$currentAdmin = ['name' => $_SESSION['admin_name'] ?? 'Studio Administrator', 'email' => 'admin@snwartstudio.com'];
+try {
+    $aStmt = db()->prepare("SELECT name, email FROM admins WHERE id = ?");
+    $aStmt->execute([$_SESSION['admin_id'] ?? 1]);
+    if ($adminRow = $aStmt->fetch()) {
+        $currentAdmin = $adminRow;
+    }
+} catch (Throwable) {}
 ?>
 <!doctype html>
 <html lang="en">
@@ -124,6 +198,7 @@ $currency = studio_setting('currency_symbol', defined('STUDIO_CURRENCY') ? STUDI
     <div style="background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-sm);">
       <form method="POST" action="<?= url('admin/settings.php') ?>">
         <input type="hidden" name="csrf" value="<?= csrf_token() ?>">
+        <input type="hidden" name="form_action" value="studio_settings">
 
         <!-- Section 1: Bank Transfer Details -->
         <div style="margin-bottom: 32px; padding-bottom: 28px; border-bottom: 1px solid var(--line);">
@@ -252,7 +327,65 @@ $currency = studio_setting('currency_symbol', defined('STUDIO_CURRENCY') ? STUDI
 
   </div>
 
-  <footer style="margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: var(--muted); flex-wrap: wrap; gap: 12px;">
+  <!-- Section 3: Admin Account & Security Settings -->
+  <div id="admin-security" style="margin-top: 50px; background: var(--paper); border: 1.5px solid var(--line); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-sm); max-width: 860px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 26px;">🔐</span>
+        <div>
+          <h2 style="font-family: var(--font-serif); font-size: 24px; color: var(--ink); margin: 0;">Admin Login &amp; Security Credentials</h2>
+          <p style="font-size: 13.5px; color: var(--muted); margin: 4px 0 0;">Update your administrator display name, login email address, or portal password.</p>
+        </div>
+      </div>
+      <span class="badge-pill" style="background: rgba(184, 134, 45, 0.12); color: var(--gold-dark); border-color: rgba(184, 134, 45, 0.3); font-weight: 600;">
+        Active: <?= e($currentAdmin['email']) ?>
+      </span>
+    </div>
+
+    <form method="POST" action="<?= url('admin/settings.php') ?>#admin-security">
+      <input type="hidden" name="csrf" value="<?= csrf_token() ?>">
+      <input type="hidden" name="form_action" value="update_admin_credentials">
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 24px;">
+        <div>
+          <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dark); font-weight: 700; margin-bottom: 6px;">Administrator Full Name *</label>
+          <input type="text" name="admin_name" value="<?= e($currentAdmin['name']) ?>" required style="width: 100%; padding: 12px 16px; background: #faf8f5; border: 1.5px solid #ded6c9; border-radius: 8px; color: var(--ink); font-size: 14.5px; font-weight: 600;">
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dark); font-weight: 700; margin-bottom: 6px;">Login Email Address *</label>
+          <input type="email" name="admin_email" value="<?= e($currentAdmin['email']) ?>" required style="width: 100%; padding: 12px 16px; background: #faf8f5; border: 1.5px solid #ded6c9; border-radius: 8px; color: var(--ink); font-size: 14.5px; font-weight: 600;">
+        </div>
+      </div>
+
+      <div style="background: #faf8f5; border: 1px solid var(--line); border-radius: 10px; padding: 24px; margin-bottom: 24px;">
+        <h4 style="font-family: var(--font-serif); font-size: 16px; color: var(--ink); margin: 0 0 6px;">Password Management</h4>
+        <p style="font-size: 12.5px; color: var(--muted); margin: 0 0 18px;">Leave the "New Password" fields blank if you only wish to change your Name or Email.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px;">
+          <div>
+            <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dark); font-weight: 700; margin-bottom: 6px;">Current Password *</label>
+            <input type="password" name="current_password" required placeholder="Verify current password" autocomplete="current-password" style="width: 100%; padding: 12px 16px; background: #fff; border: 1.5px solid #ded6c9; border-radius: 8px; color: var(--ink); font-size: 14.5px;">
+            <small style="color: var(--muted); font-size: 11.5px; margin-top: 4px; display: block;">Required to confirm your identity.</small>
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dark); font-weight: 700; margin-bottom: 6px;">New Password</label>
+            <input type="password" name="new_password" placeholder="Min. 6 characters" minlength="6" autocomplete="new-password" style="width: 100%; padding: 12px 16px; background: #fff; border: 1.5px solid #ded6c9; border-radius: 8px; color: var(--ink); font-size: 14.5px;">
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dark); font-weight: 700; margin-bottom: 6px;">Confirm New Password</label>
+            <input type="password" name="confirm_password" placeholder="Repeat new password" minlength="6" autocomplete="new-password" style="width: 100%; padding: 12px 16px; background: #fff; border: 1.5px solid #ded6c9; border-radius: 8px; color: var(--ink); font-size: 14.5px;">
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="button gold" style="padding: 13px 26px; font-size: 14.5px; font-weight: 600; cursor: pointer; border: none;">
+        <span>🔒 Update Admin Credentials</span>
+      </button>
+    </form>
+  </div> padding: 24px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: var(--muted); flex-wrap: wrap; gap: 12px;">
     <div>SNW Art Studio · Internal Management Portal v1.0</div>
     <div>
       System Engineered &amp; Maintained by <a href="https://sandunsameera.vercel.app/" target="_blank" rel="noopener" style="color: var(--gold-dark); font-weight: 600; text-decoration: none;">Sandun Sameera ↗</a>
