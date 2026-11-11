@@ -88,6 +88,7 @@ INSERT INTO admins (name, email, password_hash) VALUES
     ('Studio Administrator', 'admin@snwartstudio.com', '$2y$10$TzOh8xQd6MZ8BUtuda1eUeugMFtZ00yNF9oUCPaCK.kG0chufMujy');
 
 INSERT INTO artworks (category_id, title, slug, description, price, image_path, featured) VALUES
+    (1, 'The Sacred Tusker', 'the-sacred-tusker', 'An intricate traditional graphite study capturing the noble presence, weathered skin textures, and majestic tusks of a Sri Lankan temple tusker, drawn with patient fidelity from a reference photograph.', 350.00, 'uploads/artworks/the-tusker.jpg', 1),
     (1, 'Quiet Study No. 01', 'quiet-study-no-01', 'A study in light, gesture and the quiet poetry of graphite.', 180.00, 'uploads/artworks/study-01.jpg', 1),
     (2, 'The Gaze', 'the-gaze', 'A considered portrait exploring presence through layered charcoal and graphite.', 260.00, 'uploads/artworks/study-02.jpg', 1),
     (1, 'Nocturne in Graphite', 'nocturne-in-graphite', 'Intricate pencil rendering exploring subtle shadow gradations and architectural lines.', 220.00, 'uploads/artworks/study-03.jpg', 1),
