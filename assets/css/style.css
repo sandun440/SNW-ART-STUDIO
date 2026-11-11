@@ -225,15 +225,19 @@ button, input, select, textarea {
 .admin-nav-btn {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 8px 16px;
+  gap: 8px;
+  padding: 7px 15px 7px 12px;
   border-radius: var(--radius-full);
   font-size: 13px;
   font-weight: 600;
-  color: var(--muted) !important;
+  line-height: 1;
+  color: var(--ink) !important;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.6);
-  transition: var(--transition);
+  background: var(--paper);
+  box-shadow: 0 2px 6px rgba(17, 16, 14, 0.04);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .admin-nav-btn::after {
@@ -243,29 +247,40 @@ button, input, select, textarea {
 .admin-nav-btn:hover {
   color: var(--ink) !important;
   border-color: var(--gold);
-  background: var(--paper);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-xs);
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.2);
 }
 
 .admin-nav-btn.is-logged {
-  background: var(--gold-light);
-  border-color: rgba(197, 160, 89, 0.45);
-  color: var(--gold-dark) !important;
+  background: #ffffff;
+  border: 1.5px solid rgba(197, 160, 89, 0.55);
+  color: var(--ink) !important;
+  box-shadow: 0 2px 8px rgba(17, 16, 14, 0.05);
 }
 
 .admin-nav-btn.is-logged:hover {
-  background: var(--gold);
-  color: #ffffff !important;
-  border-color: var(--gold);
+  background: #faf8f5;
+  border-color: var(--gold-dark);
+  color: var(--ink) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(197, 160, 89, 0.22);
 }
 
 .admin-dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: var(--radius-full);
-  background: #16a34a;
-  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.2);
+  background: #10b981;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  animation: adminPulse 2s infinite;
+}
+
+@keyframes adminPulse {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+  70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
 .nav-toggle {

@@ -17,7 +17,7 @@ $currentUri = $_SERVER['REQUEST_URI'] ?? '';
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="<?= url('assets/css/style.css') ?>?v=4.0" rel="stylesheet">
+<link href="<?= url('assets/css/style.css') ?>?v=4.2" rel="stylesheet">
 </head>
 <body>
 <header class="site-header">
@@ -47,10 +47,11 @@ $currentUri = $_SERVER['REQUEST_URI'] ?? '';
         <a href="<?= url('admin/index.php') ?>" class="admin-nav-btn is-logged" title="Studio Admin Dashboard">
           <span class="admin-dot"></span>
           <span>Dashboard</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="opacity: 0.45; margin-left: 1px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </a>
       <?php else: ?>
         <a href="<?= url('admin/login.php') ?>" class="admin-nav-btn" title="Studio Admin Login">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--gold-dark);"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
           <span>Admin</span>
         </a>
       <?php endif; ?>
