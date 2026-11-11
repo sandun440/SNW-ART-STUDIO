@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $s = db()->prepare('INSERT INTO contact_messages (name, email, subject, message) VALUES (?,?,?,?)');
         $s->execute([$name, $email, $subject, $message]);
         flash('success', 'Thank you! Your message has been safely received. The studio will get back to you shortly.');
-        redirect('contact.php');
+        redirect('contact.php?sent=1');
     }
 }
 
@@ -67,6 +67,36 @@ require __DIR__ . '/components/header.php';
 
     <!-- Right: Message Form -->
     <div class="form-wrap" style="width: 100%;">
+      <?php 
+      $successMsg = flash('success');
+      if (!empty($_GET['sent']) && empty($successMsg)) {
+          $successMsg = 'Thank you! Your message has been safely received. The studio will get back to you shortly.';
+      }
+      ?>
+
+      <?php if (!empty($successMsg)): ?>
+        <div style="background: #ffffff; border: 2px solid #22c55e; border-radius: var(--radius-md); padding: 26px 30px; box-shadow: 0 10px 30px rgba(34, 197, 94, 0.12); margin-bottom: 26px;">
+          <div style="display: flex; align-items: flex-start; gap: 16px;">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: #dcfce7; color: #15803d; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; flex-shrink: 0;">
+              ✓
+            </div>
+            <div>
+              <h3 style="font-family: var(--font-serif); font-size: 22px; color: var(--ink); margin: 0 0 6px;">Message Sent Successfully!</h3>
+              <p style="color: var(--muted); font-size: 14.5px; line-height: 1.6; margin: 0 0 16px;">
+                <?= e($successMsg) ?>
+              </p>
+              <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                <span style="font-size: 13px; color: var(--muted);">Need immediate assistance?</span>
+                <a href="https://wa.me/<?= WHATSAPP_NUMBER ?>?text=<?= urlencode('Hello! I just submitted an inquiry via the website contact form.') ?>" target="_blank" rel="noopener" class="button" style="background: #25d366; color: #fff; border: none; padding: 7px 16px; font-size: 12.5px; font-weight: 600; gap: 6px; box-shadow: 0 4px 12px rgba(37,211,102,0.25);">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.07-.98-.073-.679-.278-1.574-.916-2.316-1.658-.87-.87-1.428-1.89-1.688-2.339-.144-.249-.015-.386.109-.51.111-.112.253-.29.38-.435.127-.144.17-.247.255-.411.085-.164.042-.307-.021-.433-.063-.127-.571-1.378-.782-1.89-.205-.499-.413-.431-.571-.439-.147-.008-.316-.01-.485-.01s-.444.063-.677.317c-.233.254-.889.868-.889 2.117 0 1.249.91 2.455 1.037 2.625.127.17 1.79 2.733 4.336 3.832.606.262 1.079.418 1.448.535.609.193 1.163.166 1.601.1.488-.074 1.503-.614 1.714-1.207.212-.593.212-1.101.149-1.207-.064-.106-.233-.17-.487-.297z"/></svg>
+                  <span>WhatsApp Artist</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <?php endif; ?>
+
       <?php if (!empty($errors)): ?>
         <div class="alert error" style="margin-bottom: 24px;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
