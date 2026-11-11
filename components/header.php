@@ -25,7 +25,7 @@ $currentUri = $_SERVER['REQUEST_URI'] ?? '';
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand" href="<?= url('index.php') ?>" aria-label="SNW Art Studio Home">
-      <img src="<?= url('assets/images/logo.png') ?>?v=1.0" alt="SNW ART STUDIO · Pencil Art &amp; Sketch Studio" class="brand-logo">
+      <img src="<?= url('assets/images/logo.png') ?>?v=2.0" alt="SNW ART STUDIO · Pencil Art &amp; Sketch Studio" class="brand-logo">
     </a>
     
     <button class="nav-toggle" aria-label="Toggle navigation">☰</button>

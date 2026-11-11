@@ -41,7 +41,7 @@ $categories = db()->query('SELECT c.*, COUNT(a.id) artwork_count FROM categories
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand" href="<?= url('admin/index.php') ?>" style="display:flex; align-items:center; gap:12px;">
-      <img src="<?= url('assets/images/logo.png') ?>?v=1.0" alt="SNW ART STUDIO" style="height: 44px; width: auto; mix-blend-mode: multiply;">
+      <img src="<?= url('assets/images/logo.png') ?>?v=2.0" alt="SNW ART STUDIO" style="height: 44px; width: auto;">
       <span class="badge-pill" style="font-size:10px; padding:3px 9px; letter-spacing:0.08em; text-transform:uppercase; font-weight:700; background:rgba(184,134,45,0.12); color:var(--gold-dark); border:1px solid rgba(184,134,45,0.3);">Admin</span>
     </a>
     <div style="display: flex; gap: 12px; align-items: center;">

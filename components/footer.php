@@ -2,7 +2,7 @@
   <div class="container footer-grid">
     <div class="footer-brand">
       <a class="brand" href="<?= url('index.php') ?>" style="margin-bottom: 8px;">
-        <img src="<?= url('assets/images/logo.png') ?>?v=1.0" alt="SNW ART STUDIO" class="brand-logo footer-logo">
+        <img src="<?= url('assets/images/logo.png') ?>?v=2.0" alt="SNW ART STUDIO" class="brand-logo footer-logo">
       </a>
       <p>Devoted to pure traditional fine portraiture, pencil sketches, and original fine arts handcrafted with patient mastery.</p>
     </div>

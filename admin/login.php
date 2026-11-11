@@ -36,11 +36,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="admin-login-wrap">
   <div class="admin-login-card">
-    <div style="text-align: center; margin-bottom: 24px;">
-      <a class="brand" href="<?= url('index.php') ?>" style="justify-content: center; margin-bottom: 14px;">
-        <img src="<?= url('assets/images/logo.png') ?>?v=1.0" alt="SNW ART STUDIO" style="height: 64px; width: auto; mix-blend-mode: multiply;">
+    <div style="text-align: center; margin-bottom: 28px;">
+      <a href="<?= url('index.php') ?>" style="display: inline-block; margin-bottom: 16px; text-decoration: none;" title="Go to Website">
+        <img src="<?= url('assets/images/logo.png') ?>?v=2.0" alt="SNW ART STUDIO" style="height: 72px; width: auto; max-width: 220px; display: block; margin: 0 auto;">
       </a>
-      <p class="eyebrow" style="justify-content: center; margin-bottom: 4px;">Studio Administration</p>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+        <span style="display: inline-block; width: 24px; height: 1.5px; background: var(--gold);"></span>
+        <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.22em; color: var(--gold-dark); font-weight: 700;">Studio Administration</span>
+        <span style="display: inline-block; width: 24px; height: 1.5px; background: var(--gold);"></span>
+      </div>
       <h1 style="font-family: var(--font-serif); font-size: 30px; font-weight: 600; margin: 0; color: var(--ink);">Sign In</h1>
     </div>
 
