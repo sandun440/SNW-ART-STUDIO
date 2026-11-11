@@ -29,18 +29,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="<?= url('assets/css/style.css') ?>?v=3.1" rel="stylesheet">
+<link rel="icon" type="image/png" href="<?= url('assets/images/favicon.png') ?>?v=1.0">
+<link href="<?= url('assets/css/style.css') ?>?v=5.0" rel="stylesheet">
 </head>
 <body style="background: radial-gradient(circle at 50% 25%, #f9f6f0 0%, #ede6da 100%); min-height: 100vh;">
 
 <div class="admin-login-wrap">
   <div class="admin-login-card">
-    <div style="text-align: center; margin-bottom: 28px;">
-      <a class="brand" href="<?= url('index.php') ?>" style="justify-content: center; margin-bottom: 16px;">
-        <div class="brand-monogram" style="width: 48px; height: 48px; font-size: 19px;">SNW</div>
+    <div style="text-align: center; margin-bottom: 24px;">
+      <a class="brand" href="<?= url('index.php') ?>" style="justify-content: center; margin-bottom: 14px;">
+        <img src="<?= url('assets/images/logo.png') ?>?v=1.0" alt="SNW ART STUDIO" style="height: 64px; width: auto; mix-blend-mode: multiply;">
       </a>
       <p class="eyebrow" style="justify-content: center; margin-bottom: 4px;">Studio Administration</p>
-      <h1 style="font-family: var(--font-serif); font-size: 32px; font-weight: 600; margin: 0; color: var(--ink);">Sign In</h1>
+      <h1 style="font-family: var(--font-serif); font-size: 30px; font-weight: 600; margin: 0; color: var(--ink);">Sign In</h1>
     </div>
 
     <?php if ($error): ?>

@@ -1,14 +1,10 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <a class="brand" href="<?= url('index.php') ?>">
-        <div class="brand-monogram">SNW</div>
-        <div class="brand-text">
-          <span>SNW</span>
-          <small>ART STUDIO</small>
-        </div>
+      <a class="brand" href="<?= url('index.php') ?>" style="margin-bottom: 8px;">
+        <img src="<?= url('assets/images/logo.png') ?>?v=1.0" alt="SNW ART STUDIO" class="brand-logo footer-logo">
       </a>
-      <p>Devoted to pure traditional graphite portraiture, emotional nuances, and stories brought to life by hand on archival cotton paper.</p>
+      <p>Devoted to pure traditional fine portraiture, pencil sketches, and original fine arts handcrafted with patient mastery.</p>
     </div>
 
     <div class="footer-col">

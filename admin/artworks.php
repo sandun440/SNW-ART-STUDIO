@@ -71,18 +71,16 @@ $artworks = db()->query('SELECT a.*, c.name category_name FROM artworks a JOIN c
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="<?= url('assets/css/style.css') ?>?v=3.1" rel="stylesheet">
+<link rel="icon" type="image/png" href="<?= url('assets/images/favicon.png') ?>?v=1.0">
+<link href="<?= url('assets/css/style.css') ?>?v=5.0" rel="stylesheet">
 </head>
 <body style="background: var(--cream);">
 
 <header class="site-header">
   <div class="container nav-wrap">
-    <a class="brand" href="<?= url('admin/index.php') ?>">
-      <div class="brand-monogram">SNW</div>
-      <div class="brand-text">
-        <span>SNW</span>
-        <small>STUDIO ADMIN</small>
-      </div>
+    <a class="brand" href="<?= url('admin/index.php') ?>" style="display:flex; align-items:center; gap:12px;">
+      <img src="<?= url('assets/images/logo.png') ?>?v=1.0" alt="SNW ART STUDIO" style="height: 44px; width: auto; mix-blend-mode: multiply;">
+      <span class="badge-pill" style="font-size:10px; padding:3px 9px; letter-spacing:0.08em; text-transform:uppercase; font-weight:700; background:rgba(184,134,45,0.12); color:var(--gold-dark); border:1px solid rgba(184,134,45,0.3);">Admin</span>
     </a>
     <div style="display: flex; gap: 12px; align-items: center;">
       <a class="button light" href="<?= url('index.php') ?>" target="_blank" style="padding: 8px 18px; font-size: 12.5px;">View Live Site &nearr;</a>

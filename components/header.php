@@ -17,17 +17,15 @@ $currentUri = $_SERVER['REQUEST_URI'] ?? '';
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="<?= url('assets/css/style.css') ?>?v=4.5" rel="stylesheet">
+<link rel="icon" type="image/png" href="<?= url('assets/images/favicon.png') ?>?v=1.0">
+<link rel="apple-touch-icon" href="<?= url('assets/images/favicon.png') ?>?v=1.0">
+<link href="<?= url('assets/css/style.css') ?>?v=5.0" rel="stylesheet">
 </head>
 <body>
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand" href="<?= url('index.php') ?>" aria-label="SNW Art Studio Home">
-      <div class="brand-monogram">SNW</div>
-      <div class="brand-text">
-        <span>SNW</span>
-        <small>ART STUDIO</small>
-      </div>
+      <img src="<?= url('assets/images/logo.png') ?>?v=1.0" alt="SNW ART STUDIO · Pencil Art &amp; Sketch Studio" class="brand-logo">
     </a>
     
     <button class="nav-toggle" aria-label="Toggle navigation">☰</button>

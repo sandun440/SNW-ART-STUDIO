@@ -114,6 +114,26 @@ button, input, select, textarea {
   gap: 12px;
 }
 
+.brand-logo {
+  height: 52px;
+  width: auto;
+  max-width: 145px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand:hover .brand-logo {
+  transform: scale(1.03);
+}
+
+.footer-logo {
+  height: 64px;
+  max-width: 180px;
+  margin-bottom: 16px;
+}
+
 .brand-monogram {
   width: 42px;
   height: 42px;
