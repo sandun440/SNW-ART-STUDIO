@@ -58,6 +58,7 @@ $messages = db()->query('SELECT * FROM contact_messages ORDER BY created_at DESC
     <a href="<?= url('admin/orders.php') ?>">Commissions &amp; Orders</a>
     <a href="<?= url('admin/messages.php') ?>" class="active">Messages (<?= count($messages) ?>)</a>
     <a href="<?= url('admin/categories.php') ?>">Categories</a>
+    <a href="<?= url('admin/settings.php') ?>">Bank &amp; Settings</a>
   </nav>
 
   <?php if ($msg = flash('success')): ?>

@@ -65,19 +65,6 @@ if ($isLocalhost) {
     define('DB_PASS', 'tACT23omLuVKBk4');
 }
 
-// Studio Contact & Settings
-define('WHATSAPP_NUMBER', (string)env('WHATSAPP_NUMBER', '94765237415'));
-define('STUDIO_EMAIL', (string)env('STUDIO_EMAIL', 'studio@snwartstudio.com'));
-define('STUDIO_HOURS', (string)env('STUDIO_HOURS', 'Monday — Saturday: 09:00 AM — 06:00 PM (IST)'));
-define('CURRENCY_SYMBOL', (string)env('CURRENCY_SYMBOL', 'Rs.'));
-
-// Studio Bank Account Details (Payment Method)
-define('BANK_NAME', (string)env('BANK_NAME', 'Commercial Bank of Ceylon'));
-define('BANK_ACCOUNT_NAME', (string)env('BANK_ACCOUNT_NAME', 'SNW ART STUDIO'));
-define('BANK_ACCOUNT_NUMBER', (string)env('BANK_ACCOUNT_NUMBER', '8001234567'));
-define('BANK_BRANCH', (string)env('BANK_BRANCH', 'Colombo Main Branch'));
-define('BANK_SWIFT', (string)env('BANK_SWIFT', 'CCEYLKKL'));
-
 date_default_timezone_set('Asia/Colombo');
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start([
@@ -88,3 +75,44 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 require_once __DIR__ . '/database.php';
 require_once __DIR__ . '/helpers.php';
+
+/**
+ * Retrieve a studio configuration setting from database (studio_settings table)
+ * with graceful fallback to .env or code default.
+ */
+function studio_setting(string $key, ?string $default = null): string {
+    static $settingsCache = null;
+    if ($settingsCache === null) {
+        $settingsCache = [];
+        try {
+            $pdo = db();
+            // Automatically ensure settings table exists
+            $pdo->exec("CREATE TABLE IF NOT EXISTS studio_settings (
+                setting_key VARCHAR(64) PRIMARY KEY,
+                setting_value TEXT NOT NULL,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            ) ENGINE=InnoDB");
+
+            $rows = $pdo->query("SELECT setting_key, setting_value FROM studio_settings")->fetchAll();
+            foreach ($rows as $r) {
+                $settingsCache[$r['setting_key']] = $r['setting_value'];
+            }
+        } catch (Throwable) {
+            // DB not ready or offline
+        }
+    }
+    return (!empty($settingsCache[$key])) ? $settingsCache[$key] : ($default ?? '');
+}
+
+// Studio Contact & Settings (from Database, fallback to .env / defaults)
+define('WHATSAPP_NUMBER', (string)studio_setting('whatsapp_number', (string)env('WHATSAPP_NUMBER', '94765237415')));
+define('STUDIO_EMAIL', (string)studio_setting('studio_email', (string)env('STUDIO_EMAIL', 'studio@snwartstudio.com')));
+define('STUDIO_HOURS', (string)studio_setting('studio_hours', (string)env('STUDIO_HOURS', 'Monday — Saturday: 09:00 AM — 06:00 PM (IST)')));
+define('CURRENCY_SYMBOL', (string)env('CURRENCY_SYMBOL', 'Rs.'));
+
+// Studio Bank Account Details (from Database, fallback to .env / defaults)
+define('BANK_NAME', (string)studio_setting('bank_name', (string)env('BANK_NAME', 'Commercial Bank of Ceylon')));
+define('BANK_ACCOUNT_NAME', (string)studio_setting('bank_account_name', (string)env('BANK_ACCOUNT_NAME', 'SNW ART STUDIO')));
+define('BANK_ACCOUNT_NUMBER', (string)studio_setting('bank_account_number', (string)env('BANK_ACCOUNT_NUMBER', '8001234567')));
+define('BANK_BRANCH', (string)studio_setting('bank_branch', (string)env('BANK_BRANCH', 'Colombo Main Branch')));
+define('BANK_SWIFT', (string)studio_setting('bank_swift', (string)env('BANK_SWIFT', 'CCEYLKKL')));

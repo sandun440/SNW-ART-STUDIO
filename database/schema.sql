@@ -62,6 +62,23 @@ CREATE TABLE contact_messages (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
+CREATE TABLE studio_settings (
+    setting_key VARCHAR(64) PRIMARY KEY,
+    setting_value TEXT NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+INSERT INTO studio_settings (setting_key, setting_value) VALUES
+    ('bank_name', 'Commercial Bank of Ceylon'),
+    ('bank_account_name', 'SNW ART STUDIO'),
+    ('bank_account_number', '8001234567'),
+    ('bank_branch', 'Colombo Main Branch'),
+    ('bank_swift', 'CCEYLKKL'),
+    ('whatsapp_number', '94765237415'),
+    ('studio_email', 'studio@snwartstudio.com'),
+    ('studio_hours', 'Monday — Saturday: 09:00 AM — 06:00 PM (IST)')
+ON DUPLICATE KEY UPDATE setting_key=setting_key;
+
 INSERT INTO categories (name, slug) VALUES
     ('Pencil Drawings', 'pencil-drawings'),
     ('Portrait Arts', 'portrait-arts');

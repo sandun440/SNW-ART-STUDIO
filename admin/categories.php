@@ -69,6 +69,7 @@ $categories = db()->query('SELECT c.*, COUNT(a.id) artwork_count FROM categories
     <a href="<?= url('admin/orders.php') ?>">Commissions &amp; Orders</a>
     <a href="<?= url('admin/messages.php') ?>">Messages</a>
     <a href="<?= url('admin/categories.php') ?>" class="active">Categories</a>
+    <a href="<?= url('admin/settings.php') ?>">Bank &amp; Settings</a>
   </nav>
 
   <?php if ($message = flash('success')): ?>

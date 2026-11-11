@@ -106,6 +106,7 @@ $artworks = db()->query('SELECT a.*, c.name category_name FROM artworks a JOIN c
     <a href="<?= url('admin/orders.php') ?>">Commissions &amp; Orders</a>
     <a href="<?= url('admin/messages.php') ?>">Messages</a>
     <a href="<?= url('admin/categories.php') ?>">Categories</a>
+    <a href="<?= url('admin/settings.php') ?>">Bank &amp; Settings</a>
   </nav>
 
   <?php if ($message = flash('success')): ?>

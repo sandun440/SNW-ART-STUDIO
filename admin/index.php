@@ -54,6 +54,7 @@ $orders = db()->query('SELECT * FROM orders ORDER BY created_at DESC LIMIT 10')-
     <a href="<?= url('admin/orders.php') ?>">Commissions &amp; Orders (<?= $counts['orders'] ?>)</a>
     <a href="<?= url('admin/messages.php') ?>">Messages (<?= $counts['messages'] ?>)</a>
     <a href="<?= url('admin/categories.php') ?>">Categories</a>
+    <a href="<?= url('admin/settings.php') ?>">Bank &amp; Settings</a>
   </nav>
 
   <!-- Metric Stat Cards -->

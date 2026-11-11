@@ -58,6 +58,7 @@ $orders = db()->query('SELECT o.*, a.title artwork_title, (SELECT image_path FRO
     <a href="<?= url('admin/orders.php') ?>" class="active">Commissions &amp; Orders</a>
     <a href="<?= url('admin/messages.php') ?>">Messages</a>
     <a href="<?= url('admin/categories.php') ?>">Categories</a>
+    <a href="<?= url('admin/settings.php') ?>">Bank &amp; Settings</a>
   </nav>
 
   <?php if ($message = flash('success')): ?>
