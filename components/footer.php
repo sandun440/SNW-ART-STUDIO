@@ -36,7 +36,7 @@
     <div>
       © <?= date('Y') ?> SNW ART STUDIO. Handcrafted with patient graphite strokes.
       <span style="opacity:0.3;margin:0 8px;">|</span>
-      <span>Crafted by <a href="https://sandunsameera.vercel.app/" target="_blank" rel="noopener" style="color:var(--gold-dark);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--gold-dark);transition:all 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--gold-dark)'">Sandun Sameera</a></span>
+      <span>Website Developed by <a href="https://sandunsameera.vercel.app/" target="_blank" rel="noopener" style="color:var(--gold-dark);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--gold-dark);transition:all 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--gold-dark)'">Sandun Sameera</a></span>
     </div>
     <div style="display:flex;gap:18px;align-items:center;">
       <a href="https://sandunsameera.vercel.app/" target="_blank" rel="noopener" style="color:var(--muted);font-size:12px;text-decoration:none;display:inline-flex;align-items:center;gap:4px;" title="Website Developer Portfolio">
